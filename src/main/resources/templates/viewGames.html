@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Games</title>
+</head>
+<h1> All Games:</h1>
+<body>
+<div class="container">
+    <h1>Games</h1>
+    <div class="row col-md-7 table-responsive">
+        <table id="customerTable" class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Genre</th>
+                <th>Rating</th>
+                <th>Platform</th>
+                <th>Release Year</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="game, rowStat: ${games}"
+                th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
+                <td th:text="${game.id}">1</td>
+                <td th:text="${game.name}">GTA</td>
+                <td th:text="${game.genre}">Adventure</td>
+                <td th:text="${game.rating}">7.80</td>
+                <td th:text="${game.platform}">Playstation N</td>
+                <td th:text="${game.releaseYear}">2010</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

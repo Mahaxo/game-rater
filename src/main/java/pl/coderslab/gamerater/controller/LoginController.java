@@ -1,4 +1,4 @@
-package pl.coderslab.gamerater.controller.login;
+package pl.coderslab.gamerater.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.ModelAndView;
 import pl.coderslab.gamerater.model.User;
 import pl.coderslab.gamerater.service.impl.UserService;
 
@@ -20,7 +19,7 @@ public class LoginController {
   @Autowired
   private UserService userService;
 
-  @GetMapping({"/login", "/"})
+  @GetMapping("/login")
   public String login() {
     return "login";
   }
@@ -34,7 +33,7 @@ public class LoginController {
 
   @PostMapping("/registration")
   public String createUser(@Valid User user, BindingResult bindingResult, Model model) {
-    User userExists = userService.findByEmail(user.getEmail());
+    User userExists = userService.findByUsername(user.getUsername());
     if (userExists != null) {
       bindingResult.rejectValue(
           "email", "error.user", "User already exists!");
@@ -49,14 +48,4 @@ public class LoginController {
     }
   }
 
-  @GetMapping("/admin/home")
-  public ModelAndView home(Model model) {
-    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-    User user = userService.findByEmail(auth.getName());
-    ModelAndView modelAndView = new ModelAndView();
-    modelAndView.addObject("userName", "Welcome " + user.getFirstName() + " " + "(" + user.getEmail() + ")");
-    modelAndView.addObject("adminMessage", "Only for the Boss!");
-    modelAndView.setViewName("admin/home");
-    return modelAndView;
-  }
 }

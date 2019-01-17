@@ -17,11 +17,14 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final DataSource dataSource;
 
     @Autowired
-    private DataSource dataSource;
+   public SecurityConfiguration(BCryptPasswordEncoder bCryptPasswordEncoder, DataSource dataSource) {
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.dataSource = dataSource;
+    }
 
     @Value("${spring.queries.users-query}")
     private String usersQuery;
@@ -52,7 +55,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         .loginPage("/login")
         .failureUrl("/login?error=true")
         .defaultSuccessUrl("/admin/home")
-        .usernameParameter("email")
+        .usernameParameter("username")
         .passwordParameter("password")
         .and()
         .logout()

@@ -16,11 +16,16 @@ import java.util.List;
 @Service
 public class UserService implements BaseService<User, Long> {
 
-    @Autowired
-    UserRepository userRepository;
-    BCryptPasswordEncoder bCryptPasswordEncoder;
-    RoleRepository roleRepository;
+    final private UserRepository userRepository;
+    final private BCryptPasswordEncoder bCryptPasswordEncoder;
+    final private RoleRepository roleRepository;
 
+    @Autowired
+    public UserService(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder, RoleRepository roleRepository) {
+        this.userRepository = userRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.roleRepository = roleRepository;
+    }
 
     public List<User> getAll() {
         return userRepository.findAll();
@@ -32,8 +37,13 @@ public class UserService implements BaseService<User, Long> {
 
     public User save(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        if(user.getId() == 0) {
         Role role = roleRepository.findByRole("ADMIN");
-        user.setRoles(new HashSet<>(Arrays.asList(role)));
+        user.setRoles(new HashSet<>(Arrays.asList(role))); }
+        else {
+            Role role = roleRepository.findByRole("USER");
+            user.setRoles(new HashSet<>(Arrays.asList(role)));
+        }
         return userRepository.save(user);
     }
 
@@ -47,9 +57,15 @@ public class UserService implements BaseService<User, Long> {
         userRepository.delete(user);
     }
 
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
     public User findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
+
+
 
 
 
