@@ -52,14 +52,15 @@ public class GameController {
     return "gameDetails";
     }
 
-    @GetMapping("games/addgame")
-    String addGame(Model model) {
-        model.addAttribute("game", new Game());
+    @GetMapping("addgame")
+    public String addGame(Model model) {
+        Game game = new Game();
+        model.addAttribute("game", game);
         return "addGame";
     }
 
-    @PostMapping("games/addgame")
-    String addGame(@Valid @ModelAttribute Game game, BindingResult result, Model model) {
+    @PostMapping("addgame")
+    public String addGame(@Valid @ModelAttribute Game game, BindingResult result, Model model) {
         if(result.hasErrors()) {
             return "addGame";
         }

@@ -1,6 +1,7 @@
 package pl.coderslab.gamerater.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 import java.sql.Date;
 import java.time.Year;
@@ -19,15 +20,16 @@ public class Game {
     private String name;
     @ManyToOne
     private Genre genre;
+    @Max(value = 18)
     private Integer minimumAge;
     @ManyToOne
     private Publisher publisher;
     @OneToMany
-    private List<Platform> platform = new ArrayList<>();
+    private List<Platform> platforms = new ArrayList<>();
     private Double rating;
     private Date releaseYear;
     @OneToMany
-    private List<Comment> comments;
+    private List<Comment> comments = new ArrayList<>();
 
     public Game() {
     }
@@ -72,12 +74,12 @@ public class Game {
         this.publisher = publisher;
     }
 
-    public List<Platform> getPlatform() {
-        return platform;
+    public List<Platform> getPlatforms() {
+        return platforms;
     }
 
-    public void setPlatform(List<Platform> platform) {
-        this.platform = platform;
+    public void setPlatforms(List<Platform> platforms) {
+        this.platforms = platforms;
     }
 
     public Double getRating() {
@@ -96,7 +98,7 @@ public class Game {
         this.releaseYear = releaseYear;
     }
 
-    public List<Comment> getComment() {
+    public List<Comment> getComments() {
         return comments;
     }
 

@@ -16,8 +16,12 @@ import javax.validation.Valid;
 @Controller
 public class LoginController {
 
+  private final UserService userService;
+
   @Autowired
-  private UserService userService;
+  public LoginController(UserService userService) {
+    this.userService = userService;
+  }
 
   @GetMapping("/login")
   public String login() {

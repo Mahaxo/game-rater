@@ -46,7 +46,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <form autocomplete="off" action="#" th:action="@{games/addgame}"
+            <form autocomplete="off" action="#" th:action="@{addgame}"
                   th:object="${game}" method="post" class="form-horizontal"
                   role="form">
                 <h2>Game Form</h2>
@@ -59,14 +59,13 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <input type="text" th:field="*{genre}" placeholder="Genre"
-                               class="form-control" /> <label
-                            th:if="${#fields.hasErrors('genre')}" th:errors="*{genre}"
-                            class="validation-message"></label>
-                    </div>
-                </div>
+                <select multiple th:field="*{platforms}" class="selected">
+                    <option value=""> --</option>
+                    <option th:each="platform : ${platforms}"
+
+                            th:value="${platform.id}"
+                            th:utext="${platform.name}">Platforms</option>
+                </select>
 
                 <div class="form-group">
                     <div class="col-sm-9">
@@ -77,29 +76,25 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <label	th:if="${#fields.hasErrors('publisher')}" th:errors="*{publisher}"
-                                  class="validation-message"></label>
-                        <input type="text" th:field="*{publisher}"
-                               placeholder="Publisher name" class="form-control" />
-                    </div>
-                </div>
+                <select th:field="*{publisher}" class="selected">
+                    <option value=""> --</option>
+                    <option th:each="publisher : ${publishers}"
+                            th:value="${publisher.id}"
+                            th:utext="${publisher.name}">Publisher</option>
+                </select>
 
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <label	th:if="${#fields.hasErrors('platform')}" th:errors="*{platform}"
-                                  class="validation-message"></label>
-                        <input type="text" th:field="*{platform}"
-                               placeholder="Platform(s)" class="form-control" />
-                    </div>
-                </div>
+                <select th:field="*{genre}" class="selected">
+                    <option value=""> --</option>
+                    <option th:each="genre : ${genres}"
+                            th:value="${genre.id}"
+                            th:utext="${genre.name}">Genre</option>
+                </select>
 
                 <div class="form-group">
                     <div class="col-sm-9">
                         <label	th:if="${#fields.hasErrors('releaseYear')}" th:errors="*{releaseYear}"
                                   class="validation-message"></label>
-                        <input type="text" th:field="*{releaseYear}"
+                        <input type="date" th:field="*{releaseYear}"
                                placeholder="Release year" class="form-control" />
                     </div>
                 </div>
@@ -120,7 +115,5 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</body>
-</html>
 </body>
 </html>
