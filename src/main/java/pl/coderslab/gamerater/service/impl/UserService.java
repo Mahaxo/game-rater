@@ -35,16 +35,16 @@ public class UserService implements BaseService<User, Long> {
         return userRepository.findById(id).get();
     }
 
-    public User save(User user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        if(user.getId() == 0) {
-        Role role = roleRepository.findByRole("ADMIN");
-        user.setRoles(new HashSet<>(Arrays.asList(role))); }
-        else {
-            Role role = roleRepository.findByRole("USER");
-            user.setRoles(new HashSet<>(Arrays.asList(role)));
-        }
-        return userRepository.save(user);
+  public User save(User user) {
+    user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+    if (userRepository.findAll().isEmpty()) {
+      Role role = roleRepository.findByRole("ADMIN");
+      user.setRoles(new HashSet<>(Arrays.asList(role)));
+    } else {
+      Role role = roleRepository.findByRole("USER");
+      user.setRoles(new HashSet<>(Arrays.asList(role)));
+    }
+      return userRepository.save(user);
     }
 
     public User updateById(Long id) {
@@ -64,6 +64,8 @@ public class UserService implements BaseService<User, Long> {
     public User findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
+
+
 
 
 

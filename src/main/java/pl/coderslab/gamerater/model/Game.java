@@ -1,6 +1,8 @@
 package pl.coderslab.gamerater.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import java.sql.Date;
 import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,18 +14,20 @@ public class Game {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(unique = true)
+    @NotBlank
     private String name;
     @ManyToOne
     private Genre genre;
-    private Integer ageRestriction;
+    private Integer minimumAge;
     @ManyToOne
     private Publisher publisher;
     @OneToMany
     private List<Platform> platform = new ArrayList<>();
     private Double rating;
-    private Year releaseYear;
+    private Date releaseYear;
     @OneToMany
-    private List<Comment> comment;
+    private List<Comment> comments;
 
     public Game() {
     }
@@ -52,12 +56,12 @@ public class Game {
         this.genre = genre;
     }
 
-    public Integer getAgeRestriction() {
-        return ageRestriction;
+    public Integer getMinimumAge() {
+        return minimumAge;
     }
 
-    public void setAgeRestriction(Integer ageRestriction) {
-        this.ageRestriction = ageRestriction;
+    public void setMinimumAge(Integer minimumAge) {
+        this.minimumAge = minimumAge;
     }
 
     public Publisher getPublisher() {
@@ -84,19 +88,19 @@ public class Game {
         this.rating = rating;
     }
 
-    public Year getReleaseYear() {
+    public Date getReleaseYear() {
         return releaseYear;
     }
 
-    public void setReleaseYear(Year releaseYear) {
+    public void setReleaseYear(Date releaseYear) {
         this.releaseYear = releaseYear;
     }
 
     public List<Comment> getComment() {
-        return comment;
+        return comments;
     }
 
-    public void setComment(List<Comment> comment) {
-        this.comment = comment;
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }

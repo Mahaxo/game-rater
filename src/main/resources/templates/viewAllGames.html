@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>Registration Form</title>
+    <title>Games</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -44,59 +44,32 @@
     </div>
 </nav>
 <div class="container">
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <form autocomplete="off" action="#" th:action="@{/registration}"
-                  th:object="${user}" method="post" class="form-horizontal"
-                  role="form">
-                <h2>Registration Form</h2>
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <label th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
-                               class="validation-message"></label>
-                        <input type="text" th:field="*{username}" placeholder="Username"
-                               class="form-control" />
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <input type="text" th:field="*{email}" placeholder="Email"
-                               class="form-control" /> <label
-                            th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
-                            class="validation-message"></label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <input type="password" th:field="*{password}"
-                               placeholder="Password" class="form-control" /> <label
-                            th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
-                            class="validation-message"></label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <label	th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"
-                                  class="validation-message"></label>
-                        <input type="text" th:field="*{firstName}"
-                               placeholder="First name" class="form-control" />
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <button type="submit" class="btn btn-primary btn-block">Register User</button>
-                    </div>
-                </div>
-
-                <span th:text="${successMessage}"></span>
-
-
-            </form>
-        </div>
+    <h1>Games</h1>
+    <div class="row col-md-7 table-responsive">
+        <table id="gameTable" class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Genre</th>
+                <th>Rating</th>
+                <th>Platform</th>
+                <th>Release Year</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="game, rowStat: ${games}"
+                th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
+                <td th:text="${game.id}">1</td>
+                <td th:text="${game.name}">GTA</td>
+                <td th:text="${game.genre}">Adventure</td>
+                <td th:text="${game.rating}">7.80</td>
+                <td th:text="${game.platform}">Playstation N</td>
+                <td th:text="${game.releaseYear}">2010</td>
+                <td><a th:href="${'games/' + game.id}">View Details</a></td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

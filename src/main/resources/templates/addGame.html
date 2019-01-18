@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>Registration Form</title>
+    <title>Add Game</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -46,49 +46,67 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <form autocomplete="off" action="#" th:action="@{/registration}"
-                  th:object="${user}" method="post" class="form-horizontal"
+            <form autocomplete="off" action="#" th:action="@{games/addgame}"
+                  th:object="${game}" method="post" class="form-horizontal"
                   role="form">
-                <h2>Registration Form</h2>
+                <h2>Game Form</h2>
                 <div class="form-group">
                     <div class="col-sm-9">
-                        <label th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
+                        <label th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
                                class="validation-message"></label>
-                        <input type="text" th:field="*{username}" placeholder="Username"
+                        <input type="text" th:field="*{name}" placeholder="Name"
                                class="form-control" />
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-sm-9">
-                        <input type="text" th:field="*{email}" placeholder="Email"
+                        <input type="text" th:field="*{genre}" placeholder="Genre"
                                class="form-control" /> <label
-                            th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+                            th:if="${#fields.hasErrors('genre')}" th:errors="*{genre}"
                             class="validation-message"></label>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-sm-9">
-                        <input type="password" th:field="*{password}"
-                               placeholder="Password" class="form-control" /> <label
-                            th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+                        <input type="number" th:field="*{minimumAge}"
+                               placeholder="Minimum age" class="form-control" /> <label
+                            th:if="${#fields.hasErrors('minimumAge')}" th:errors="*{minimumAge}"
                             class="validation-message"></label>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-sm-9">
-                        <label	th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"
+                        <label	th:if="${#fields.hasErrors('publisher')}" th:errors="*{publisher}"
                                   class="validation-message"></label>
-                        <input type="text" th:field="*{firstName}"
-                               placeholder="First name" class="form-control" />
+                        <input type="text" th:field="*{publisher}"
+                               placeholder="Publisher name" class="form-control" />
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-sm-9">
-                        <button type="submit" class="btn btn-primary btn-block">Register User</button>
+                        <label	th:if="${#fields.hasErrors('platform')}" th:errors="*{platform}"
+                                  class="validation-message"></label>
+                        <input type="text" th:field="*{platform}"
+                               placeholder="Platform(s)" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <label	th:if="${#fields.hasErrors('releaseYear')}" th:errors="*{releaseYear}"
+                                  class="validation-message"></label>
+                        <input type="text" th:field="*{releaseYear}"
+                               placeholder="Release year" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <button type="submit" class="btn btn-primary btn-block">Add Game</button>
                     </div>
                 </div>
 
@@ -102,5 +120,7 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
 </body>
 </html>

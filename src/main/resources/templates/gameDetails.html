@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>Registration Form</title>
+    <title>Games</title>
 </head>
+<h1>Game Details:</h1>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">Gamerater</a>
@@ -44,59 +45,18 @@
     </div>
 </nav>
 <div class="container">
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <form autocomplete="off" action="#" th:action="@{/registration}"
-                  th:object="${user}" method="post" class="form-horizontal"
-                  role="form">
-                <h2>Registration Form</h2>
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <label th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
-                               class="validation-message"></label>
-                        <input type="text" th:field="*{username}" placeholder="Username"
-                               class="form-control" />
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <input type="text" th:field="*{email}" placeholder="Email"
-                               class="form-control" /> <label
-                            th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
-                            class="validation-message"></label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <input type="password" th:field="*{password}"
-                               placeholder="Password" class="form-control" /> <label
-                            th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
-                            class="validation-message"></label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <label	th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"
-                                  class="validation-message"></label>
-                        <input type="text" th:field="*{firstName}"
-                               placeholder="First name" class="form-control" />
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <button type="submit" class="btn btn-primary btn-block">Register User</button>
-                    </div>
-                </div>
-
-                <span th:text="${successMessage}"></span>
-
-
-            </form>
-        </div>
+    <h1>Game Details</h1>
+    <div th:object="${game}">
+        <p>ID: <span th:text="*{id}">1</span>.</p>
+        <p>Name: <span th:text="*{name}">Call of Duty</span>.</p>
+        <p>Publisher: <span th:text="*{publisher}">Rockstar</span>.</p>
+        <p>Genre: <span th:text="*{genre}">FPS</span>.</p>
+        <p>Age Restriction: <span th:number="*{minimumAge}">12</span>.</p>
+        <p>Platform: <span th:text="*{platform}">Saturn</span>.</p>
+        <p>Rating: <span th:text="*{rating}">Saturn</span>.</p>
+        <p>Release year: <span th:text="*{releaseYear}">Saturn</span>.</p>
+        <p>Comments: <span th:text="*{comment}">Saturn</span>.</p>
+    </div>
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
