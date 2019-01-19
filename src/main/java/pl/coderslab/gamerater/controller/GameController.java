@@ -52,14 +52,14 @@ public class GameController {
     return "gameDetails";
     }
 
-    @GetMapping("addgame")
+    @GetMapping("games/add")
     public String addGame(Model model) {
         Game game = new Game();
         model.addAttribute("game", game);
         return "addGame";
     }
 
-    @PostMapping("addgame")
+    @PostMapping("games/add")
     public String addGame(@Valid @ModelAttribute Game game, BindingResult result, Model model) {
         if(result.hasErrors()) {
             return "addGame";
@@ -82,7 +82,7 @@ public class GameController {
         }
         gameService.save(game);
         model.addAttribute("game", new Game());
-        return "editUser";
+        return "editGame";
     }
 
     @ModelAttribute("genres")

@@ -46,7 +46,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <form autocomplete="off" action="#" th:action="@{addgame}"
+            <form autocomplete="off" action="#" th:action="@{games/add}"
                   th:object="${game}" method="post" class="form-horizontal"
                   role="form">
                 <h2>Game Form</h2>
@@ -92,9 +92,9 @@
 
                 <div class="form-group">
                     <div class="col-sm-9">
-                        <label	th:if="${#fields.hasErrors('releaseYear')}" th:errors="*{releaseYear}"
+                        <label	th:if="${#fields.hasErrors('releaseDate')}" th:errors="*{releaseDate}"
                                   class="validation-message"></label>
-                        <input type="date" th:field="*{releaseYear}"
+                        <input type="date" th:field="*{releaseDate}"
                                placeholder="Release year" class="form-control" />
                     </div>
                 </div>

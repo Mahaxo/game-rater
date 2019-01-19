@@ -43,4 +43,9 @@ public class Publisher {
     public void setGames(List<Game> games) {
         this.games = games;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

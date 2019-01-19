@@ -1,6 +1,9 @@
 package pl.coderslab.gamerater.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.coderslab.gamerater.model.Role;
@@ -61,8 +64,14 @@ public class UserService implements BaseService<User, Long> {
         return userRepository.findByUsername(username);
     }
 
-    public User findByEmail(String email) {
-        return userRepository.findByEmail(email);
+    public User checkCurrentUser() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userRepository.findByUsername(auth.getName());
+        if (user == null) {
+            throw new UsernameNotFoundException("You are not authorized, please login or register");
+        }
+
+        return user;
     }
 
 

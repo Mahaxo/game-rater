@@ -8,7 +8,6 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>Games</title>
 </head>
-<h1>Game Details:</h1>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">Gamerater</a>
@@ -52,10 +51,10 @@
         <p>Publisher: <span th:text="*{publisher}">Rockstar</span>.</p>
         <p>Genre: <span th:text="*{genre}">FPS</span>.</p>
         <p>Age Restriction: <span th:number="*{minimumAge}">12</span>.</p>
-        <p>Platform: <span th:text="*{platform}">Saturn</span>.</p>
+        <p>Platforms: <span th:text="*{platforms}">Saturn</span>.</p>
         <p>Rating: <span th:text="*{rating}">Saturn</span>.</p>
-        <p>Release year: <span th:text="*{releaseYear}">Saturn</span>.</p>
-        <p>Comments: <span th:text="*{comment}">Saturn</span>.</p>
+        <p>Release year: <span th:text="*{releaseDate}">Saturn</span>.</p>
+        <p>Comments: <span th:text="*{comments}">Saturn</span>.</p>
     </div>
     </div>
 </div>

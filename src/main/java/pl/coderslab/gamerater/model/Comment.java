@@ -66,4 +66,15 @@ public class Comment {
     public void setUser(User user) {
         this.user = user;
     }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "id=" + id +
+                ", creationDate=" + creationDate +
+                ", content='" + content + '\'' +
+                ", user=" + user +
+                ", game=" + game +
+                '}';
+    }
 }

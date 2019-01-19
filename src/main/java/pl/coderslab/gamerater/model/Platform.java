@@ -10,6 +10,9 @@ public class Platform {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    @ManyToOne
+    @JoinColumn(name = "game_id")
+    private Game game;
 
     public Platform() {
     }
@@ -28,5 +31,10 @@ public class Platform {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

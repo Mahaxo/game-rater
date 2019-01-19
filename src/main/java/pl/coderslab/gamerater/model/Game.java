@@ -3,7 +3,7 @@ package pl.coderslab.gamerater.model;
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
-import java.sql.Date;
+import java.time.LocalDate;
 import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,10 +24,10 @@ public class Game {
     private Integer minimumAge;
     @ManyToOne
     private Publisher publisher;
-    @OneToMany
+    @OneToMany(mappedBy = "game")
     private List<Platform> platforms = new ArrayList<>();
     private Double rating;
-    private Date releaseYear;
+    private LocalDate releaseDate;
     @OneToMany
     private List<Comment> comments = new ArrayList<>();
 
@@ -90,12 +90,12 @@ public class Game {
         this.rating = rating;
     }
 
-    public Date getReleaseYear() {
-        return releaseYear;
+    public LocalDate getReleaseDate() {
+        return releaseDate;
     }
 
-    public void setReleaseYear(Date releaseYear) {
-        this.releaseYear = releaseYear;
+    public void setReleaseDate(LocalDate releaseDate) {
+        this.releaseDate = releaseDate;
     }
 
     public List<Comment> getComments() {
@@ -104,5 +104,20 @@ public class Game {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    @Override
+    public String toString() {
+        return "Game{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", genre=" + genre +
+                ", minimumAge=" + minimumAge +
+                ", publisher=" + publisher +
+                ", platforms=" + platforms +
+                ", rating=" + rating +
+                ", releaseYear=" + releaseDate +
+                ", comments=" + comments +
+                '}';
     }
 }
