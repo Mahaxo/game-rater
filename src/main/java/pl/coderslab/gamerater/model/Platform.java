@@ -10,8 +10,6 @@ public class Platform {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @ManyToOne
-    private Game game;
 
     public Platform() {
     }

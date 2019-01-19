@@ -46,5 +46,4 @@ public class GameService implements BaseService<Game, Long> {
         gameRepository.delete(game);
     }
 
-
 }

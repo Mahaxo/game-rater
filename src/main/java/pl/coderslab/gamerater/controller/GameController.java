@@ -75,7 +75,7 @@ public class GameController {
         model.addAttribute("game", game);
         return "editGame";
     }
-    @PostMapping("games/edit/{id}")
+    @PostMapping("games/edit/**")
     public String saveEditCategory(@Valid @ModelAttribute Game game, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "editGame";
