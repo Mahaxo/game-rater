@@ -46,16 +46,16 @@
 <div class="container">
     <h1>Game Details</h1>
     <div th:object="${game}">
-        <p>ID: <span th:text="*{id}">1</span>.</p>
         <p>Name: <span th:text="*{name}">Call of Duty</span>.</p>
         <p>Publisher: <span th:text="*{publisher}">Rockstar</span>.</p>
         <p>Genre: <span th:text="*{genre}">FPS</span>.</p>
         <p>Age Restriction: <span th:number="*{minimumAge}">12</span>.</p>
         <p>Platforms: <span th:text="*{platforms}">Saturn</span>.</p>
         <p>Rating: <span th:text="*{rating}">Saturn</span>.</p>
-        <p>Release year: <span th:text="*{releaseDate}">Saturn</span>.</p>
-        <p>Comments: <span th:text="*{comments}">Saturn</span>.</p>
+        <p><td><a th:href="${'/edit/' + game.id}">Edit Game</a></td></p>
+
     </div>
+    <p>Show comments: <span th:text="*{comments}">Saturn</span>.</p>
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

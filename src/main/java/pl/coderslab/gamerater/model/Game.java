@@ -1,5 +1,7 @@
 package pl.coderslab.gamerater.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
@@ -21,13 +23,13 @@ public class Game {
     @ManyToOne
     private Genre genre;
     @Max(value = 18)
+    @Column(name = "minimum_age")
     private Integer minimumAge;
     @ManyToOne
     private Publisher publisher;
-    @OneToMany(mappedBy = "game")
+    @OneToMany
     private List<Platform> platforms = new ArrayList<>();
     private Double rating;
-    private LocalDate releaseDate;
     @OneToMany
     private List<Comment> comments = new ArrayList<>();
 
@@ -90,14 +92,6 @@ public class Game {
         this.rating = rating;
     }
 
-    public LocalDate getReleaseDate() {
-        return releaseDate;
-    }
-
-    public void setReleaseDate(LocalDate releaseDate) {
-        this.releaseDate = releaseDate;
-    }
-
     public List<Comment> getComments() {
         return comments;
     }
@@ -116,7 +110,6 @@ public class Game {
                 ", publisher=" + publisher +
                 ", platforms=" + platforms +
                 ", rating=" + rating +
-                ", releaseYear=" + releaseDate +
                 ", comments=" + comments +
                 '}';
     }

@@ -52,14 +52,14 @@ public class GameController {
     return "gameDetails";
     }
 
-    @GetMapping("games/add")
+    @GetMapping("/add")
     public String addGame(Model model) {
         Game game = new Game();
         model.addAttribute("game", game);
         return "addGame";
     }
 
-    @PostMapping("games/add")
+    @PostMapping("/add")
     public String addGame(@Valid @ModelAttribute Game game, BindingResult result, Model model) {
         if(result.hasErrors()) {
             return "addGame";
@@ -69,19 +69,20 @@ public class GameController {
         model.addAttribute("game", new Game());
         return "addGame";
     }
-    @GetMapping("games/{id}/edit")
+    @GetMapping("games/edit/{id}")
     public String editGame(Model model, @PathVariable long id) {
         Game game = gameService.findById(id);
         model.addAttribute("game", game);
         return "editGame";
     }
-    @PostMapping("games/**/edit")
+    @PostMapping("games/edit/{id}")
     public String saveEditCategory(@Valid @ModelAttribute Game game, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "editGame";
         }
         gameService.save(game);
         model.addAttribute("game", new Game());
+        model.addAttribute("successMessage", "Game has been edited successfully");
         return "editGame";
     }
 
