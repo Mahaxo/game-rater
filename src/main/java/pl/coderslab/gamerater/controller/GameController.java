@@ -69,14 +69,14 @@ public class GameController {
         model.addAttribute("game", new Game());
         return "addGame";
     }
-    @GetMapping("games/edit/{id}")
+    @GetMapping("edit/{id}")
     public String editGame(Model model, @PathVariable long id) {
         Game game = gameService.findById(id);
         model.addAttribute("game", game);
         return "editGame";
     }
-    @PostMapping("games/edit/**")
-    public String saveEditCategory(@Valid @ModelAttribute Game game, BindingResult result, Model model) {
+    @PostMapping("edit/**")
+    public String saveEditGame(@Valid @ModelAttribute Game game, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "editGame";
         }
@@ -85,6 +85,25 @@ public class GameController {
         model.addAttribute("successMessage", "Game has been edited successfully");
         return "editGame";
     }
+
+    @GetMapping("rate/{id}")
+    public String rateGame(Model model, @PathVariable long id) {
+        Game game = gameService.findById(id);
+        model.addAttribute("game", game);
+        return "rateGame";
+    }
+    @PostMapping("rate/**")
+    public String rateSaveGame(@Valid @ModelAttribute Game game, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "rateGame";
+        }
+        gameService.save(game);
+        model.addAttribute("game", new Game());
+        model.addAttribute("successMessage", "Game has been rated successfully");
+        return "rateGame";
+    }
+
+
 
     @ModelAttribute("genres")
     public List<Genre> populateGenres() {

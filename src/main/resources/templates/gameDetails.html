@@ -44,6 +44,7 @@
         <p>Platforms: <span th:text="*{platforms}">Saturn</span>.</p>
         <p>Rating: <span th:text="*{rating}">Saturn</span>.</p>
         <p><td><a th:href="${'/edit/' + game.id}">Edit Game</a></td></p>
+        <p><td><a th:href="${'/rate/' + game.id}">Rate Game</a></td></p>
 
     </div>
     <p>Show comments: <span th:text="*{comments}">Saturn</span>.</p>
