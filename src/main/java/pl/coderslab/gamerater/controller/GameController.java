@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.coderslab.gamerater.model.Game;
 import pl.coderslab.gamerater.model.Genre;
 import pl.coderslab.gamerater.model.Platform;
@@ -102,8 +99,6 @@ public class GameController {
         model.addAttribute("successMessage", "Game has been rated successfully");
         return "rateGame";
     }
-
-
 
     @ModelAttribute("genres")
     public List<Genre> populateGenres() {
